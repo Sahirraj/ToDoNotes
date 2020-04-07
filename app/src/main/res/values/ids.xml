@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="editTextFullName" type="id" />
+    <item name="editTextUserName" type="id" />
+    <item name="buttonLogin" type="id" />
+    <item name="textViewTitle" type="id" />
+    <item name="textViewDescription" type="id" />
+
+
+    <item name="textviewDescription" type="id" />
+</resources>
