@@ -4,6 +4,8 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,12 +22,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
+import adapter.NotesAdapter;
+import model.Notes;
+
 public class MyNotesActivity extends AppCompatActivity {
 
     String fullName;
     FloatingActionButton fabAddNotes;
-    TextView textViewTitle, textViewDescription;
     SharedPreferences sharedPreferences;
+    RecyclerView recyclerViewNotes;
+    ArrayList<Notes> notesList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +41,9 @@ public class MyNotesActivity extends AppCompatActivity {
         setContentView( R.layout.activity_my_notes );
 
         bindView();
-        getIntentData();
         setupSharedPreference();
+        getIntentData();
+
 
         fabAddNotes.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -48,20 +57,19 @@ public class MyNotesActivity extends AppCompatActivity {
 
     private void setupSharedPreference() {
         sharedPreferences = getSharedPreferences(prefConstant.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
+        recyclerViewNotes = findViewById(R.id.recyclerViewNotes);
     }
 
     private void getIntentData() {
         Intent intent = getIntent();
         fullName = intent.getStringExtra( AppConstant.FULL_NAME );
-        if(TextUtils.isEmpty(fullName)){
+        if(TextUtils.isEmpty(fullName))
             fullName = sharedPreferences.getString(prefConstant.FULL_NAME,"");
-        }
     }
 
     private void bindView() {
         fabAddNotes = findViewById( R.id.fabAddNotes );
-        textViewTitle = findViewById( R.id.textViewTitle );
-        textViewDescription = findViewById( R.id.textViewDescription );
+
 
     }
 
@@ -78,11 +86,27 @@ public class MyNotesActivity extends AppCompatActivity {
         buttonSubmit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textViewTitle.setText( editTextTitle.getText().toString() );
-                textViewDescription.setText( editTextDescription.getText().toString() );
+                String title = editTextTitle.getText().toString();
+                String description = editTextDescription.getText().toString();
+                Notes notes = new Notes();
+                notes.setTitle(title);
+                notes.setDescription(description);
+                notesList.add(notes);
+                setupRecyclerView();
+                Log.d("TAG", String.valueOf(notesList.size()));
+
+
                 dialog.hide();
             }
         } );
         dialog.show();
+    }
+
+    private void setupRecyclerView() {
+        NotesAdapter notesAdapter = new NotesAdapter(notesList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MyNotesActivity.this);
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerViewNotes.setLayoutManager(linearLayoutManager);
+        recyclerViewNotes.setAdapter(notesAdapter);
     }
 }
