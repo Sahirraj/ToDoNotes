@@ -4,7 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import com.example.myapplication.clicklisteners.ItemClickListener;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,9 +16,11 @@ import java.util.zip.Inflater;
 import model.Notes;
 
 public class NotesAdapter  extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
-    List<Notes> listNotes;
-    public  NotesAdapter(List<Notes> list){
+  private  List<Notes> listNotes;
+    private ItemClickListener itemClickListener;
+    public  NotesAdapter(List<Notes> list, ItemClickListener itemClickListener){
         this.listNotes = list;
+        this.itemClickListener = itemClickListener;
 
 
     }
@@ -37,6 +39,12 @@ public class NotesAdapter  extends RecyclerView.Adapter<NotesAdapter.ViewHolder>
         final  String description = notes.getDescription();
         holder.textViewTitle.setText(title);
         holder.textViewDescription.setText(description);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemClickListener.onClick(notes);
+            }
+        });
     }
 
     @Override

@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.text.CaseMap;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,7 +19,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myapplication.clicklisteners.ItemClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.w3c.dom.Text;
@@ -26,6 +30,9 @@ import java.util.ArrayList;
 
 import adapter.NotesAdapter;
 import model.Notes;
+
+import static com.example.myapplication.AppConstant.DESCRIPTION;
+import static com.example.myapplication.AppConstant.TITLE;
 
 public class MyNotesActivity extends AppCompatActivity {
 
@@ -88,10 +95,14 @@ public class MyNotesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String title = editTextTitle.getText().toString();
                 String description = editTextDescription.getText().toString();
-                Notes notes = new Notes();
-                notes.setTitle(title);
-                notes.setDescription(description);
-                notesList.add(notes);
+                if(!TextUtils.isEmpty(title) && !TextUtils.isEmpty(description)) {
+                    Notes notes = new Notes();
+                    notes.setTitle(title);
+                    notes.setDescription(description);
+                    notesList.add(notes);
+                }else {
+                    Toast.makeText(MyNotesActivity.this,"Title And Description is Mandatory",Toast.LENGTH_SHORT).show();
+                }
                 setupRecyclerView();
                 Log.d("TAG", String.valueOf(notesList.size()));
 
@@ -103,7 +114,21 @@ public class MyNotesActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        NotesAdapter notesAdapter = new NotesAdapter(notesList);
+
+        ItemClickListener itemClickListener =  new ItemClickListener() {
+            @Override
+            public void onClick(Notes notes) {
+                Intent intent = new Intent(MyNotesActivity.this, DetailActivity.class);
+                intent.putExtra(TITLE,notes.getTitle());
+                intent.putExtra(DESCRIPTION,notes.getDescription());
+                startActivity(intent);
+            }
+
+
+
+        };
+
+        NotesAdapter notesAdapter = new NotesAdapter(notesList,itemClickListener);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MyNotesActivity.this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerViewNotes.setLayoutManager(linearLayoutManager);
