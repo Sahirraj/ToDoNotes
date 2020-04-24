@@ -25,6 +25,7 @@ import utils.prefConstant
 import java.util.*
 
 public class MyNotesActivity : AppCompatActivity() {
+    val ADD_NOTES_CODE =100
     var fullName: String?=null
     lateinit var fabAddNotes:FloatingActionButton
     val TAG = "MyNotesActivity"
@@ -43,7 +44,9 @@ public class MyNotesActivity : AppCompatActivity() {
         supportActionBar?.title = fullName
         fabAddNotes.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
-                setupDialogBox()
+               // setupDialogBox()
+                val intent = Intent(this@MyNotesActivity, AddNotesActivity::class.java)
+                startActivityForResult(intent, ADD_NOTES_CODE)
             }
 
         })
