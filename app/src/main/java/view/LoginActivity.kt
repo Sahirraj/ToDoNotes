@@ -1,18 +1,18 @@
-package com.example.myapplication
+package view
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.SharedPreferences.Editor
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.prefConstant.IS_LOGGED_IN
-import com.example.myapplication.prefConstant.SHARED_PREFERENCE_NAME
+import com.example.myapplication.R
+import utils.AppConstant
+import utils.prefConstant
+import utils.prefConstant.IS_LOGGED_IN
 
 class LoginActivity : AppCompatActivity() {
     lateinit  var editTextFullName: EditText

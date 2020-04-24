@@ -1,8 +1,10 @@
-package com.example.myapplication
+package view
 
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.R
+import utils.AppConstant
 
 class DetailActivity : AppCompatActivity() {
     lateinit var textViewTitle: TextView

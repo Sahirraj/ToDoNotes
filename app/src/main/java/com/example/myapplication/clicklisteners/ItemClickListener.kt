@@ -1,7 +1,9 @@
 package com.example.myapplication.clicklisteners
 
-import model.Notes
+import db.Notes
+
 
 interface ItemClickListener {
     fun onClick(notes: Notes)
+    fun onUpdate(notes: Notes)
 }

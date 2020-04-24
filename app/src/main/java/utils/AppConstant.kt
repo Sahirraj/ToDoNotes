@@ -1,4 +1,4 @@
-package com.example.myapplication
+package utils
 
 object AppConstant {
 
