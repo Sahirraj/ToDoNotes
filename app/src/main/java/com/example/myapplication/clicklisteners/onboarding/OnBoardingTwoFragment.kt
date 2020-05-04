@@ -1,5 +1,6 @@
 package com.example.myapplication.clicklisteners.onboarding
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,12 @@ import com.example.myapplication.R
 class OnBoardingTwoFragment : Fragment() {
     lateinit var textViewBack: TextView
     lateinit var textViewDone:TextView
+    lateinit var onOptionClick: OnOptionClick
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        onOptionClick = context as OnOptionClick
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -26,7 +33,26 @@ class OnBoardingTwoFragment : Fragment() {
     private fun bindView(view: View) {
         textViewDone = view.findViewById(R.id.textViewDone)
         textViewBack = view.findViewById(R.id.textViewBack)
+        clicklistener()
 
+    }
+    private fun clicklistener(){
+        textViewBack.setOnClickListener(object:View.OnClickListener{
+            override fun onClick(v: View?) {
+                onOptionClick.onOptionBack()
+            }
+
+        })
+        textViewDone.setOnClickListener(object:View.OnClickListener{
+            override fun onClick(v: View?) {
+                onOptionClick.onOptionDone()
+            }
+
+        })
+    }
+    interface OnOptionClick {
+        fun onOptionBack()
+        fun onOptionDone()
     }
 
 
