@@ -6,25 +6,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:orientation="vertical">
-    <TextView
-        android:layout_width="0dp"
+    <ImageView
+        android:layout_width="100dp"
         android:id="@+id/textViewCamera"
+        android:background="@drawable/images"
         android:text="Camera"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:layout_width="0dp"
+        android:layout_height="100dp"/>
+    <ImageView
+        android:layout_width="100dp"
         android:id="@+id/textViewGallery"
         android:text="Gallery"
+        android:background="@drawable/gallery_icon"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="@+id/textViewCamera"
         app:layout_constraintEnd_toEndOf="@+id/textViewCamera"
         app:layout_constraintTop_toBottomOf="@+id/textViewCamera"
-        android:layout_height="wrap_content"/>
+        android:layout_height="100dp"/>
     
 </androidx.constraintlayout.widget.ConstraintLayout>

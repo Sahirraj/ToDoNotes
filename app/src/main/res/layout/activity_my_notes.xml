@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".clicklisteners.view.MyNotesActivity">
+    tools:context=".clicklisteners.view.MyNotesActivity"
+    android:background="@drawable/add_notes_2"
+    >
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddNotes"

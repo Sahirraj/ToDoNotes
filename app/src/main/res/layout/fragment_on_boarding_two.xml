@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fragment_two"
     tools:context=".clicklisteners.onboarding.OnBoardingTwoFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -22,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Done"
-
+        android:background="@color/cardview_dark_background"
+        android:textColorHint="@android:color/black"
         android:id="@+id/textViewDone"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,6 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Back"
+        android:background="@color/colorAccent"
+        android:textColorHint="@android:color/black"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

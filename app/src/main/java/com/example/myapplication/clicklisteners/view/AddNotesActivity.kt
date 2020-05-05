@@ -105,8 +105,8 @@ class AddNotesActivity : AppCompatActivity() {
 
     private fun setupDialog() {
         val view = LayoutInflater.from(this).inflate(R.layout.dialog_selector,null)
-        val textViewCamera: TextView = view.findViewById(R.id.textViewCamera)
-        val textViewGallery: TextView = view.findViewById(R.id.textViewGallery)
+        val textViewCamera: ImageView = view.findViewById(R.id.textViewCamera)
+        val textViewGallery: ImageView = view.findViewById(R.id.textViewGallery)
         val dialog = AlertDialog.Builder(this)
                 .setView(view)
                 .setCancelable(true)
